@@ -1,0 +1,19 @@
+services:
+
+  backend:
+    build:
+      context: ./server
+    container_name: smart-interview-backend
+    ports:
+      - "5001:5001"
+    environment:
+      GEMINI_API_KEY: ${GEMINI_API_KEY}
+
+  frontend:
+    build:
+      context: ./client
+    container_name: smart-interview-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
