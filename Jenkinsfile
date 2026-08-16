@@ -37,7 +37,7 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker compose build'
+                bat 'docker-compose build'
             }
         }
 
