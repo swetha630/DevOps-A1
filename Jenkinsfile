@@ -2,6 +2,10 @@ pipeline {
 
     agent any
 
+    environment {
+        GEMINI_API_KEY = credentials('gemini-api-key')
+    }
+
     stages {
 
         stage('Checkout') {
@@ -41,15 +45,22 @@ pipeline {
             }
         }
 
+        stage('Deploy Application') {
+            steps {
+                bat 'docker-compose down'
+                bat 'docker-compose up -d'
+            }
+        }
+
     }
 
     post {
         success {
-            echo 'CI pipeline completed successfully!'
+            echo 'CI/CD pipeline completed successfully!'
         }
 
         failure {
-            echo 'CI pipeline failed. Check the console output.'
+            echo 'CI/CD pipeline failed. Check the console output.'
         }
     }
 }
