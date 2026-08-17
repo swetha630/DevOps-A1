@@ -38,6 +38,13 @@ pipeline {
                 }
             }
         }
+        stage('Docker Diagnostics') {
+    steps {
+        bat 'whoami'
+        bat 'docker context ls'
+        bat 'docker info'
+    }
+}
 
         stage('Build Docker Images') {
             steps {
