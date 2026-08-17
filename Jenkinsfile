@@ -41,14 +41,14 @@ pipeline {
 
         stage('Build Docker Images') {
             steps {
-                bat 'docker-compose build'
+                bat 'set DOCKER_HOST=npipe:////./pipe/dockerDesktopLinuxEngine && docker-compose build'
             }
         }
 
         stage('Deploy Application') {
             steps {
-                bat 'docker-compose down'
-                bat 'docker-compose up -d'
+                bat 'set DOCKER_HOST=npipe:////./pipe/dockerDesktopLinuxEngine && docker-compose down'
+                bat 'set DOCKER_HOST=npipe:////./pipe/dockerDesktopLinuxEngine && docker-compose up -d'
             }
         }
 
